@@ -1,0 +1,21 @@
+REPORT ZLOCK_OBJECT.
+
+
+
+
+CALL FUNCTION 'ENQUEUE_EZSEARCHHELP'
+ EXPORTING
+   MODE_ZSEARCHHELP       = 'E'
+
+   MANDT                  = SY-MANDT
+   EMP_ID                 = 'ID_3'
+ EXCEPTIONS
+   FOREIGN_LOCK           = 1
+   SYSTEM_FAILURE         = 2
+   OTHERS                 = 3
+          .
+IF SY-SUBRC EQ 0.
+
+ MESSAGE 'LOCK IS GENERATED' TYPE 'I'.
+
+ENDIF.
